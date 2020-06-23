@@ -30,7 +30,7 @@ class SpotifyAPI(object):
             }
         )
         self.api_key = response.json()['access_token']
-        print(self.api_key)
+        # print(self.api_key)
 
 
     def get_top_tracks_short(self):

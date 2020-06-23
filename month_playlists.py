@@ -2,7 +2,7 @@ from datetime import datetime, date, timedelta
 from spotify_client import SpotifyAPI
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-scheduler = BackgroundScheduler()
+scheduler = BlockingScheduler()
 
 @scheduler.scheduled_job('interval', minutes=5)
 def main():
@@ -16,7 +16,7 @@ def main():
     playlist_id = api.create_playlist(lastMonth)
     print(api.add_tracks_to_playlist(playlist_id, track_uris))
 
-schedule.start()
+scheduler.start()
 
 if __name__ == '__main__':
     main()

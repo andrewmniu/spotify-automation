@@ -4,7 +4,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 scheduler = BlockingScheduler()
 
-@scheduler.scheduled_job('cron', day_of_week='mon-fri', hour=15, minute=50)
+@scheduler.scheduled_job('cron', day='*', hour=16)
 def main():
     today = date.today()
     first = today.replace(day=1)

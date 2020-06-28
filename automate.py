@@ -13,8 +13,7 @@ load_dotenv(dotenv_path=env_path)
 
 scheduler = BlockingScheduler()
 
-# @scheduler.scheduled_job('cron', day='*')
-@scheduler.scheduled_job('cron', minute="2")
+@scheduler.scheduled_job('cron', hour='*')
 def month_playlists():
     today = date.today()
     first = today.replace(day=1)
@@ -26,7 +25,7 @@ def month_playlists():
     playlist_id = api.create_playlist(lastMonth)
     print(api.add_tracks_to_playlist(playlist_id, track_uris))
 
-@scheduler.scheduled_job('cron', minute="2")
+@scheduler.scheduled_job('cron', hour='*')
 def listening_history():
     with open("last_played.pickle", "rb") as pickle_file:
         lastPlayed = pickle.load(pickle_file)

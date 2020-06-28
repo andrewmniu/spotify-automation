@@ -151,6 +151,6 @@ class SpotifyAPI(object):
         toaddrs = ['andrewmniu@gmail.com']
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
-        server.login("uniqlohatchecker@gmail.com", "5@Moz0h3f12KPXPqJ6")
+        server.login("uniqlohatchecker@gmail.com", os.getenv('EMAIL_PASSWORD'))
         server.sendmail(fromaddr, toaddrs, msg)
         server.quit()

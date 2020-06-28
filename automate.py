@@ -13,7 +13,7 @@ load_dotenv(dotenv_path=env_path)
 
 scheduler = BlockingScheduler()
 
-@scheduler.scheduled_job('cron', day='*')
+@scheduler.scheduled_job('cron', day='1')
 def month_playlists():
     today = date.today()
     first = today.replace(day=1)

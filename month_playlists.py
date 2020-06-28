@@ -2,9 +2,9 @@ from datetime import datetime, date, timedelta
 from spotify_client import SpotifyAPI
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-scheduler = BlockingScheduler()
+# scheduler = BlockingScheduler()
 
-@scheduler.scheduled_job('cron', day='*')
+# @scheduler.scheduled_job('cron', day='*')
 def main():
     today = date.today()
     first = today.replace(day=1)
@@ -16,7 +16,7 @@ def main():
     playlist_id = api.create_playlist(lastMonth)
     print(api.add_tracks_to_playlist(playlist_id, track_uris))
 
-scheduler.start()
+# scheduler.start()
 
 if __name__ == '__main__':
     main()

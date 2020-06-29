@@ -7,8 +7,8 @@ from datetime import datetime
 import pytz
 
 def main():
-    env_path = Path('.') / '.env'
-    load_dotenv(dotenv_path=env_path)
+    # env_path = Path('.') / '.env'
+    # load_dotenv(dotenv_path=env_path)
     # Connect to database
     try:
         db = mysql.connector.connect(

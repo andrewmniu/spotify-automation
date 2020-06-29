@@ -4,7 +4,9 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 scheduler = BlockingScheduler()
 
-scheduler.add_job(month_playlists, 'cron', day='1')
-scheduler.add_job(listening_history, 'cron', hour='*')
+# scheduler.add_job(month_playlists, 'cron', day='1')
+scheduler.add_job(month_playlists, 'cron', minute='26')
+scheduler.add_job(listening_history, 'cron', minute='26')
+# scheduler.add_job(listening_history, 'cron', hour='*')
 
 scheduler.start()

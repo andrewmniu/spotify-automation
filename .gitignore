@@ -1,4 +1,3 @@
 spotify-automation
 .env
 __pycache__
-last_played.pickle

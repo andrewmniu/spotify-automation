@@ -8,6 +8,7 @@ env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 
 class SpotifyAPI(object):
+    # Gets access token from stored refresh token
     def __init__(self):
         CLIENT_ID = os.getenv('CLIENT_ID')
         CLIENT_SECRET = os.getenv('CLIENT_SECRET')
@@ -33,6 +34,7 @@ class SpotifyAPI(object):
             self.send_email(message)
             raise Exception
 
+    # Gets top 30 tracks over the last 4 weeks
     def get_top_tracks_short(self):
         payload = {'limit': 30, 'time_range': 'short_term'}
         url = f'https://api.spotify.com/v1/me/top/tracks'
@@ -53,6 +55,7 @@ class SpotifyAPI(object):
             self.send_email(message)
             raise Exception
 
+    # Creates a playlist with the month as the title
     def create_playlist(self, month):
         url = 'https://api.spotify.com/v1/users/andrewniu/playlists'
         response = requests.post(
@@ -74,7 +77,7 @@ class SpotifyAPI(object):
             self.send_email(message)
             raise Exception
 
-
+    # Adds specified tracks to specified playlist
     def add_tracks_to_playlist(self, playlist_id, track_uris):
         url = f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks'
         response = requests.post(
@@ -95,6 +98,7 @@ class SpotifyAPI(object):
             self.send_email(message)
             raise Exception
 
+    # Gets recently played and returns a tuple: (played_at, track_id)
     def get_recently_played(self, lastPlayed = 0):
         url = 'https://api.spotify.com/v1/me/player/recently-played'
         payload = {'limit': 50, 'after': lastPlayed}
@@ -115,7 +119,8 @@ class SpotifyAPI(object):
             self.send_email(message)
             raise Exception
 
-
+    # Gets full info on tracks and returns dict
+    # track_id: (track_id, name, album, artist)
     def get_tracks(self, track_ids):
         url = f'https://api.spotify.com/v1/tracks/'
         track_ids_string = ''
@@ -144,6 +149,7 @@ class SpotifyAPI(object):
             self.send_email(message)
             raise Exception
 
+    # Sends an email when something goes wrong
     def send_email(self, message):
         import smtplib
         msg = f'Subject: SPOTIFY AUTOMATION ERROR \n\n{message}'
